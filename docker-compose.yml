@@ -1,0 +1,28 @@
+version: "3.3"
+services:
+  postgres:
+    image: postgres:13.1-alpine
+    environment:
+      # POSTGRES_DB: my_db
+      POSTGRES_USER: "asdf"
+      POSTGRES_PASSWORD: "asdf123"
+    # ports:
+    #   - "5432:5432"
+    # volumes:
+    #   - ./data/pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  pgadmin4:
+    build: ./
+    image: dcagatay/pwless-pgadmin4:latest
+    depends_on:
+      - postgres
+    ports:
+      - 15432:80
+    environment:
+      POSTGRES_USER: "asdf"
+      POSTGRES_PASSWORD: "asdf123"
+      # POSTGRES_HOST: "postgres"
+      # POSTGRES_PORT: "5432"
+      # POSTGRES_DB: "*"
+    restart: unless-stopped
