@@ -2,7 +2,7 @@ name: build-push-latest-version
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 6 5 * *" # Run monthly
+    - cron: "30 6 5 * *" # Run monthly for updates
   push:
     paths-ignore:
       - README.md
@@ -15,6 +15,8 @@ jobs:
   bake-latest:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
 
       - name: Install gather Azure Devops Agent versions from API
         id: version_provider
