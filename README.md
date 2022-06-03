@@ -4,7 +4,7 @@ pgAdmin4 container image with password-less usage configuration.
 
 Image resides in DockerHub ([dcagatay/pwless-pgadmin4](https://hub.docker.com/r/dcagatay/pwless-pgadmin4)).
 
-Sample usage can be found in the _docker-compose.yml_ file.
+Sample usage can be found in the [_docker-compose.yml_](https://github.com/dogukancagatay/docker-pwless-pgadmin4/blob/master/docker-compose.yml) file.
 
 ## Environment variables
 
