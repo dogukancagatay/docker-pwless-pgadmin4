@@ -1,4 +1,4 @@
-ARG BASE_VERSION="6.12"
+ARG BASE_VERSION="6.13"
 FROM dpage/pgadmin4:${BASE_VERSION}
 
 ENV PGADMIN_DEFAULT_EMAIL="pgadmin4@pgadmin.org"
