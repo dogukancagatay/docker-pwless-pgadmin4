@@ -1,8 +1,5 @@
 name: build-push-latest-version
 on:
-  workflow_dispatch:
-  schedule:
-    - cron: "30 6 5 * *" # Run monthly for updates
   push:
     paths-ignore:
       - README.md
@@ -10,6 +7,9 @@ on:
       - docker-compose.yml
     branches:
       - master
+  #  workflow_dispatch:
+  #  schedule:
+  #    - cron: "30 6 5 * *" # Run monthly for updates
 
 jobs:
   bake-latest:
