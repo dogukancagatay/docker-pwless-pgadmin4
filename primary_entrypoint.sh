@@ -34,6 +34,12 @@ COUNT=2
 while [ ! -z "$(eval echo \"\$POSTGRES_HOST_$COUNT\")" ]; do
     POSTGRES_HOST="$(eval echo \"\$POSTGRES_HOST_$COUNT\")"
     POSTGRES_PORT="$(eval echo \"\$POSTGRES_PORT_$COUNT\")"
+
+    # Set default for the postgres port
+    if [ -z "$POSTGRES_PORT" ]; then
+        POSTGRES_PORT="5432"
+    fi
+
     # if POSTGRES_DB, default is "*"
     POSTGRES_DB="$(eval echo \"\$POSTGRES_DB_$COUNT\")"
     if [ -z "$POSTGRES_DB" ]; then

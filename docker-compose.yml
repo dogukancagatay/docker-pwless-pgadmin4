@@ -1,9 +1,10 @@
 version: "3.3"
 services:
+
   postgres:
     image: postgres:alpine
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "$$POSTGRES_USER"]
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER}'"]
       interval: 3s
       timeout: 30s
       retries: 10
@@ -14,10 +15,11 @@ services:
     # volumes:
     #   - postgres-data:/var/lib/postgresql/data
     restart: unless-stopped
+
   postgres2:
     image: postgres:alpine
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "$$POSTGRES_USER"]
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER}'"]
       interval: 3s
       timeout: 30s
       retries: 10
@@ -28,10 +30,11 @@ services:
     # volumes:
     #   - postgres-data2:/var/lib/postgresql/data
     restart: unless-stopped
+
   postgres3:
     image: postgres:alpine
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "$$POSTGRES_USER"]
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER}'"]
       interval: 3s
       timeout: 30s
       retries: 10
@@ -42,6 +45,7 @@ services:
     # volumes:
     #   - postgres-data3:/var/lib/postgresql/data
     restart: unless-stopped
+
   pgadmin4:
     build: ./
     image: dcagatay/pwless-pgadmin4:latest
@@ -53,7 +57,7 @@ services:
       postgres3:
         condition: service_healthy
     ports:
-      - 15432:80
+      - 25432:80
     environment:
       POSTGRES_USER: my_user
       POSTGRES_PASSWORD: my_pass
@@ -64,15 +68,16 @@ services:
       POSTGRES_USER_2: my_user2
       POSTGRES_PASSWORD_2: my_pass2
       POSTGRES_HOST_2: "postgres2"
-      POSTGRES_PORT_2: "5432"
+      # POSTGRES_PORT_2: "5432"
       # POSTGRES_DB_2: "*"
 
       POSTGRES_USER_3: my_user3
       POSTGRES_PASSWORD_3: my_pass3
       POSTGRES_HOST_3: "postgres3"
-      POSTGRES_PORT_3: "5432"
-      POSTGRES_DB_3: "*"
+      # POSTGRES_PORT_3: "5432"
+      # POSTGRES_DB_3: "*"
     restart: unless-stopped
+
 # volumes:
 #   postgres-data:
 #   postgres-data2:
