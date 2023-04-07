@@ -6,6 +6,7 @@ on:
       - README.md
       - LICENSE
       - docker-compose.yml
+      - docker-compose-multi.yml
     branches:
       - master
 
