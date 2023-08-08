@@ -1,11 +1,11 @@
 #!/usr/bin/env sh
 
-# set -x
 set -e
 
 ## Create /var/lib/pgadmin/pgpass
 # 1st database
-echo "$POSTGRES_HOST:$POSTGRES_PORT:$POSTGRES_DB:$POSTGRES_USER:$POSTGRES_PASSWORD" | tee "/var/lib/pgadmin/pgpass" >/dev/null
+echo "$POSTGRES_HOST:$POSTGRES_PORT:postgres:$POSTGRES_USER:$POSTGRES_PASSWORD" | tee -a "/var/lib/pgadmin/pgpass" >/dev/null
+echo "$POSTGRES_HOST:$POSTGRES_PORT:$POSTGRES_DB:$POSTGRES_USER:$POSTGRES_PASSWORD" | tee -a "/var/lib/pgadmin/pgpass" >/dev/null
 POSTGRES_HOST_1=$POSTGRES_HOST
 POSTGRES_PORT_1=$POSTGRES_PORT
 POSTGRES_DB_1=$POSTGRES_DB
@@ -47,7 +47,8 @@ while [ ! -z "$(eval echo \"\$POSTGRES_HOST_$COUNT\")" ]; do
     fi
     POSTGRES_USER="$(eval echo \"\$POSTGRES_USER_$COUNT\")"
     POSTGRES_PASSWORD="$(eval echo \"\$POSTGRES_PASSWORD_$COUNT\")"
-    echo "$POSTGRES_HOST:$POSTGRES_PORT:$POSTGRES_DB:$POSTGRES_USER:$POSTGRES_PASSWORD" | tee "/var/lib/pgadmin/pgpass_$COUNT" >/dev/null
+    echo "$POSTGRES_HOST:$POSTGRES_PORT:postgres:$POSTGRES_USER:$POSTGRES_PASSWORD" | tee -a "/var/lib/pgadmin/pgpass_$COUNT" >/dev/null
+    echo "$POSTGRES_HOST:$POSTGRES_PORT:$POSTGRES_DB:$POSTGRES_USER:$POSTGRES_PASSWORD" | tee -a "/var/lib/pgadmin/pgpass_$COUNT" >/dev/null
 
     tee -a /pgadmin4/servers.json >/dev/null <<EOF
         ,"$COUNT": {
