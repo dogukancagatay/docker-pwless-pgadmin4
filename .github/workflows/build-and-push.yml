@@ -27,11 +27,11 @@ jobs:
         id: version_provider
         run: |
           VERSION=$(grep 'ARG BASE_VERSION' Dockerfile | awk -F= '{print $2}')
-          echo "::set-output name=version::$VERSION"
+          echo "BASE_CONTAINER_VERSION=$VERSION" >> "$GITHUB_ENV"
 
       - name: debug
         run: |
-          echo "::debug:: ${{steps.version_provider.outputs.version}}"
+          echo "::debug:: ${{ env.BASE_CONTAINER_VERSION }}"
 
       - name: Login to DockerHub
         uses: docker/login-action@v3
@@ -48,4 +48,4 @@ jobs:
             dcagatay/pwless-pgadmin4:latest
           tags: |
             dcagatay/pwless-pgadmin4:latest
-            dcagatay/pwless-pgadmin4:${{steps.version_provider.outputs.version}}
+            dcagatay/pwless-pgadmin4:${{ env.BASE_CONTAINER_VERSION }}
