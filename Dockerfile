@@ -1,6 +1,10 @@
 ARG BASE_VERSION=8.8
 FROM dpage/pgadmin4:${BASE_VERSION}
 
+LABEL org.opencontainers.image.source=https://github.com/dogukancagatay/docker-pwless-pgadmin4
+LABEL org.opencontainers.image.description="Passwordless pgadmin4"
+LABEL org.opencontainers.image.licenses=MIT
+
 ENV PGADMIN_DEFAULT_EMAIL="pgadmin4@pgadmin.org"
 ENV PGADMIN_DEFAULT_PASSWORD="admin"
 ENV PGADMIN_CONFIG_SERVER_MODE="False"
