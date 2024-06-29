@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "pwless-pgadmin4-test"
+version = "0.1.0"
+description = ""
+authors = ["Doğukan Çağatay <dcagatay@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.2"
+selenium = "^4.22.0"
+testcontainers = "^4.7.0"
+ruff = "^0.5.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
