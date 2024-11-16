@@ -1,4 +1,4 @@
-ARG BASE_VERSION=8.12
+ARG BASE_VERSION=8.13
 FROM dpage/pgadmin4:${BASE_VERSION}
 
 LABEL org.opencontainers.image.source=https://github.com/dogukancagatay/docker-pwless-pgadmin4
