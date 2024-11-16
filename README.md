@@ -2,7 +2,7 @@
 
 pgAdmin4 container image with password-less usage configuration.
 
-Sample `docker-compose.yml` usage:
+Sample `docker-compose.yml`:
 
 ```yaml
   pgadmin4:
@@ -12,8 +12,8 @@ Sample `docker-compose.yml` usage:
     environment:
       POSTGRES_USER: my_user
       POSTGRES_PASSWORD: my_pass
-      # POSTGRES_HOST: "postgres"
-      # POSTGRES_PORT: "5432"
+      POSTGRES_HOST: "postgres"
+      POSTGRES_PORT: "5432"
       # POSTGRES_DB: "*"
 ```
 
@@ -29,15 +29,15 @@ A quick example could be found in [`docker-compose.yml`](https://github.com/dogu
 
 ### Multi Server Config
 
-You can add more hosts by adding enumerated environment variables, where X is the number of the host (starting from **2**):
+You can configure multiple hosts by adding enumerated environment variables, where X is the index of the host (starting from `1`):
 
 - `POSTGRES_USER_X`: Postgres DB user name. (**Required**)
 - `POSTGRES_PASSWORD_X`: Postgres DB user password. (**Required**)
 - `POSTGRES_HOST_X`: PostgreSQL DB Host. (**Required**)
 - `POSTGRES_PORT_X`: PostgreSQL DB Port. (Default: _5432_)
-- `POSTGRES_DB_X`: PostgreSQL DB name. (Default: _\*_, Asterisk means any db.)
+- `POSTGRES_DB_X`: PostgreSQL DB name. (Default: _\*_, meaning any db.)
 
-An multi database example usage could be found in [`docker-compose-multi.yml`](https://github.com/dogukancagatay/docker-pwless-pgadmin4/blob/master/docker-compose-multi.yml).
+A multi database example usage could be found in [`docker-compose-multi.yml`](https://github.com/dogukancagatay/docker-pwless-pgadmin4/blob/master/docker-compose-multi.yml).
 
 ## Links
 

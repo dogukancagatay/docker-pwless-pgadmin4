@@ -58,11 +58,11 @@ services:
     ports:
       - 25432:80
     environment:
-      POSTGRES_USER: my_user
-      POSTGRES_PASSWORD: my_pass
-      # POSTGRES_HOST: "postgres"
-      # POSTGRES_PORT: "5432"
-      # POSTGRES_DB: "*"
+      POSTGRES_USER_1: my_user
+      POSTGRES_PASSWORD_1: my_pass
+      # POSTGRES_HOST_1: "postgres"
+      # POSTGRES_PORT_1: "5432"
+      # POSTGRES_DB_1: "*"
 
       POSTGRES_USER_2: my_user2
       POSTGRES_PASSWORD_2: my_pass2
