@@ -3,22 +3,8 @@ on:
   pull_request:
 
 jobs:
-  build-image:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Build (no push)
-        uses: docker/build-push-action@v5
-        with:
-          platforms: linux/amd64,linux/arm64
-          push: false
-          tags: |
-            dcagatay/pwless-pgadmin4:pr-${{ github.event.pull_request.number }}
+  build-pr-image:
+    uses: ./.github/workflows/build-image.yml
+    with:
+      image_tag: pr-${{ github.event.pull_request.number }}
+    secrets: inherit
