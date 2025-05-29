@@ -2,9 +2,10 @@
 
 pgAdmin4 container image with password-less usage configuration.
 
-Sample `docker-compose.yml`:
+Sample `compose.yml`:
 
 ```yaml
+...
   pgadmin4:
     image: dcagatay/pwless-pgadmin4:latest
     ports:
@@ -17,7 +18,7 @@ Sample `docker-compose.yml`:
       # POSTGRES_DB: "*"
 ```
 
-A quick example could be found in [`docker-compose.yml`](https://github.com/dogukancagatay/docker-pwless-pgadmin4/blob/master/docker-compose.yml).
+A quick example could be found in [`compose.yml`](https://github.com/dogukancagatay/docker-pwless-pgadmin4/blob/master/compose.yml).
 
 ## Environment variables
 
@@ -37,7 +38,7 @@ You can configure multiple hosts by adding enumerated environment variables, whe
 - `POSTGRES_PORT_X`: PostgreSQL DB Port. (Default: _5432_)
 - `POSTGRES_DB_X`: PostgreSQL DB name. (Default: _\*_, meaning any db.)
 
-A multi database example usage could be found in [`docker-compose-multi.yml`](https://github.com/dogukancagatay/docker-pwless-pgadmin4/blob/master/docker-compose-multi.yml).
+A multi database example usage could be found in [`compose-multi.yml`](https://github.com/dogukancagatay/docker-pwless-pgadmin4/blob/master/compose-multi.yml).
 
 ## Links
 
