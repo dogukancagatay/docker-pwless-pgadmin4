@@ -2,7 +2,7 @@ name: build-push-tag-version
 on:
   push:
     tags:
-      - '*'
+      - "*"
 
 jobs:
   build-push-tag:
@@ -32,10 +32,3 @@ jobs:
           cache-to: type=gha,ref=dcagatay/pwless-pgadmin4,mode=max
           tags: |
             dcagatay/pwless-pgadmin4:${{ github.ref_name }}
-
-      - name: Update repo description
-        uses: peter-evans/dockerhub-description@v4
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: dcagatay/pwless-pgadmin4
