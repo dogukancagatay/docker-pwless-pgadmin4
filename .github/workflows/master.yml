@@ -1,4 +1,4 @@
-name: build-on-master
+name: build-latest-image-on-master
 on:
   workflow_dispatch:
   push:
@@ -9,39 +9,14 @@ on:
       - compose-multi.yml
     branches:
       - master
+      - main
 
 jobs:
-  build-push-latest:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+  build-and-push-latest-image:
+    uses: ./.github/workflows/build-image.yml
+    with:
+      image_tag: latest
+      should_push_image: true
+      should_update_repo_description: true
+    secrets: inherit
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Login to DockerHub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Build and push
-        uses: docker/build-push-action@v5
-        with:
-          platforms: linux/amd64,linux/arm64
-          push: true
-          cache-from: type=gha,ref=dcagatay/pwless-pgadmin4
-          cache-to: type=gha,ref=dcagatay/pwless-pgadmin4,mode=max
-          tags: |
-            dcagatay/pwless-pgadmin4:latest
-
-      - name: Update repo description
-        uses: peter-evans/dockerhub-description@v4
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: dcagatay/pwless-pgadmin4
