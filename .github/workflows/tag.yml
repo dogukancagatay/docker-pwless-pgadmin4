@@ -1,13 +1,13 @@
-name: build-on-tag
+name: build-on-release
 on:
-  push:
-    tags:
-      - "*"
+  release:
+    types:
+      - published
 
 jobs:
   build-and-push-tag-version-image:
     uses: ./.github/workflows/build-image.yml
     with:
-      image_tag: ${{ github.ref_name }}
+      image_tag: ${{ github.event.release.tag_name }}
       should_push_image: true
     secrets: inherit
